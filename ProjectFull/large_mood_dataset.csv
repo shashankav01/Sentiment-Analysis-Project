@@ -1,0 +1,106 @@
+text,mood
+"Today is absolutely wonderful! Everything is going perfectly! 🌟",happy
+"Just received amazing news about my promotion! 🎉",happy
+"My wedding day was the most beautiful day of my life! 💑",happy
+"Achieved all my goals this month, feeling accomplished! 🏆",happy
+"The surprise party they threw for me was incredible! 🎈",happy
+"My child took their first steps today! 👶",happy
+"Won first prize in the competition! 🥇",happy
+"Finally bought my dream house! 🏠",happy
+"Graduated with honors, all the hard work paid off! 🎓",happy
+"Our team won the championship! 🏆",happy
+"My business is thriving beyond expectations! 📈",happy
+"Just got engaged to the love of my life! 💍",happy
+"Reunited with my family after years apart! 🤗",happy
+"Received a full scholarship to my dream university! 📚",happy
+"My art exhibition was a huge success! 🎨",happy
+"Lost my job today, feeling devastated 💔",sad
+"My best friend moved away to another country 😢",sad
+"Failed my important exam despite studying hard 📝",sad
+"Got rejected from my dream college 😔",sad
+"My pet passed away this morning 🐾",sad
+"Nobody remembered my birthday 🎂",sad
+"Lost all my savings in a bad investment 💸",sad
+"Found out my partner has been unfaithful 💔",sad
+"Missing my loved ones who are far away 🌍",sad
+"Got terrible news from the doctor today 🏥",sad
+"My manuscript was rejected by all publishers 📚",sad
+"Lost the championship in the final match ⚽",sad
+"My startup failed after years of hard work 📉",sad
+"Had to cancel my wedding 💍",sad
+"My childhood home was sold today 🏠",sad
+"Regular day at work, nothing special 💼",neutral
+"Doing the usual grocery shopping 🛒",neutral
+"Weather is typical for this time of year ☁️",neutral
+"Taking care of routine maintenance 🔧",neutral
+"Standard meeting with the team 👥",neutral
+"Having an ordinary lunch break 🥪",neutral
+"Commuting to work like any other day 🚗",neutral
+"Checking emails and responding to messages 📧",neutral
+"Organizing my weekly schedule 📅",neutral
+"Reading the morning news 📰",neutral
+"Going through the daily reports 📊",neutral
+"Walking the dog at the usual time 🐕",neutral
+"Making dinner as usual 🍳",neutral
+"Attending the regular staff meeting 💼",neutral
+"Doing some basic housekeeping 🧹",neutral
+"Can't wait for my vacation to Hawaii! ✈️",excited
+"Just got tickets to the World Cup final! ⚽",excited
+"Starting my dream job next week! 💼",excited
+"About to go on stage for my first performance! 🎭",excited
+"Launching my new business tomorrow! 🚀",excited
+"Meeting my favorite celebrity tonight! 🌟",excited
+"First time traveling abroad! 🌍",excited
+"Moving to New York City next month! 🗽",excited
+"Publishing my first book next week! 📚",excited
+"Going skydiving for the first time! 🪂",excited
+"Hosting my first major event tomorrow! 🎉",excited
+"Starting my YouTube channel today! 🎥",excited
+"Got selected for the national team! 🏆",excited
+"Giving a TED talk next month! 🎤",excited
+"Opening my restaurant tomorrow! 🍽️",excited
+"This service is absolutely unacceptable! 😠",angry
+"Someone stole my car from the parking lot! 🚗",angry
+"The airline lost all my luggage! ✈️",angry
+"My neighbor's loud music is driving me crazy! 🔊",angry
+"They cancelled my show without any notice! 📺",angry
+"Got scammed by an online seller! 💻",angry
+"My computer crashed and lost all my work! 💻",angry
+"Someone took credit for my project! 📊",angry
+"The delivery person damaged my package! 📦",angry
+"My landlord raised the rent unfairly! 🏠",angry
+"The restaurant gave me the wrong order again! 🍽️",angry
+"Traffic is making me late for my interview! 🚗",angry
+"My phone got stolen in broad daylight! 📱",angry
+"They overcharged me and refuse to refund! 💰",angry
+"My internet keeps disconnecting during meetings! 💻",angry
+"Nervous about my surgery tomorrow 🏥",anxious
+"Waiting for my test results 📝",anxious
+"Big presentation in front of the board 📊",anxious
+"First day at my new school 🏫",anxious
+"Meeting the in-laws for the first time 👥",anxious
+"Job interview in an hour 💼",anxious
+"Audition for the main role today 🎭",anxious
+"Waiting for college acceptance letters 📬",anxious
+"Going on my first blind date 💕",anxious
+"Taking my driving test today 🚗",anxious
+"Preparing for my thesis defense 📚",anxious
+"Starting a new life in a different country 🌍",anxious
+"Waiting for medical test results 🏥",anxious
+"First time performing solo 🎤",anxious
+"Important client meeting in 5 minutes 💼",anxious
+"I feel so peaceful watching the sunset 🌅",content
+"Just finished meditating, feeling serene 🧘",content
+"Enjoying a quiet morning with my coffee ☕",content
+"Reading a good book by the fireplace 📚",content
+"Spending quality time with family 👨‍👩‍👧‍👦",content
+"This is the most boring day ever 😴",bored
+"Nothing interesting to do today 🥱",bored
+"Stuck in a never-ending meeting 💤",bored
+"Another uneventful weekend 📅",bored
+"Can't find anything good to watch 📺",bored
+"Feeling inspired to start a new project! 💡",inspired
+"Just had an amazing breakthrough idea! ✨",inspired
+"Found the perfect solution to my problem! 🎯",inspired
+"Ready to make positive changes in my life! 🌱",inspired
+"This workshop opened my mind to new possibilities! 🎨",inspired

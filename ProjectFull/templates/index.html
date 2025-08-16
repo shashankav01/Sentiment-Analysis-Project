@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mood Analyzer AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered mood analysis tool">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .app-container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .app-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .app-header h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .app-header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .input-section {
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1em;
+            resize: none;
+            transition: border-color 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #764ba2;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle i {
+            color: white;
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        body.dark-theme {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        body.dark-theme .app-container {
+            background: #0f3460;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        body.dark-theme .app-header h1 {
+            color: #e94560;
+        }
+
+        body.dark-theme .app-header p {
+            color: #d8d8d8;
+        }
+
+        body.dark-theme textarea {
+            background: #16213e;
+            border-color: #533483;
+            color: #fff;
+        }
+
+        body.dark-theme textarea:focus {
+            border-color: #e94560;
+        }
+
+        body.dark-theme button {
+            background: #533483;
+        }
+
+        body.dark-theme button:hover {
+            background: #e94560;
+        }
+
+        body.dark-theme .result-section {
+            background: #16213e;
+        }
+
+        body.dark-theme .result-item {
+            background: #1a1a2e;
+            color: #fff;
+        }
+
+        body.dark-theme .result-item h3 {
+            color: #e94560;
+        }
+
+        body.dark-theme .character-count {
+            color: #d8d8d8;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #764ba2;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+
+        button:hover {
+            background: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .result-section {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            display: none;
+        }
+
+        .result-item {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .result-item h3 {
+            color: #764ba2;
+            margin-bottom: 5px;
+        }
+
+        .mood-emoji {
+            font-size: 3em;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .confidence-bar {
+            width: 100%;
+            height: 10px;
+            background: #ddd;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        .confidence-level {
+            height: 100%;
+            background: #764ba2;
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+
+        @media (max-width: 480px) {
+            .app-container {
+                padding: 20px;
+            }
+
+            .app-header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+    <div class="app-container">
+        <div class="app-header">
+            <h1>Mood Analyzer</h1>
+            <p>Share your thoughts and let AI analyze your mood</p>
+        </div>
+
+        <div class="input-section">
+            <textarea id="text-input" rows="5" placeholder="How are you feeling today?" maxlength="500"></textarea>
+            <div class="character-count">0/500 characters</div>
+            <button onclick="analyzeMood()">
+                <i class="fas fa-brain"></i> Analyze My Mood
+            </button>
+            <div class="error-message" id="error-message"></div>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <p>Analyzing your mood...</p>
+        </div>
+
+        <div id="result" class="result-section">
+            <div class="mood-emoji" id="mood-emoji"></div>
+            
+            <div class="result-item">
+                <h3>Basic Mood</h3>
+                <p id="basic-mood"></p>
+            </div>
+
+            <div class="result-item">
+                <h3>Predicted Mood</h3>
+                <p id="predicted-mood"></p>
+            </div>
+
+            <div class="result-item">
+                <h3>Confidence</h3>
+                <p id="confidence"></p>
+                <div class="confidence-bar">
+                    <div id="confidence-level" class="confidence-level"></div>
+                </div>
+            </div>
+
+            <div class="result-item">
+                <h3>Sentiment Score</h3>
+                <p id="sentiment-score"></p>
+            </div>
+            <div class="emotion-tags" id="emotion-tags"></div>
+            
+            <div class="mood-history">
+                <h3 class="history-title">Recent Analysis History</h3>
+                <div id="history-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // All JavaScript code should be here in one block
+        // Theme toggle functionality
+        const themeToggle = document.querySelector('.theme-toggle');
+        
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-theme');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            
+            // Smooth icon transition
+            themeToggle.style.transform = 'rotate(180deg)';
+            setTimeout(() => {
+                themeToggle.innerHTML = isDark ? 
+                    '<i class="fas fa-sun"></i>' : 
+                    '<i class="fas fa-moon"></i>';
+                themeToggle.style.transform = 'rotate(0deg)';
+            }, 200);
+
+            // Save theme preference
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Character count functionality
+        const textInput = document.getElementById('text-input');
+        const charCount = document.querySelector('.character-count');
+
+        textInput.addEventListener('input', () => {
+            const length = textInput.value.length;
+            charCount.textContent = `${length}/500 characters`;
+        });
+
+        // Mood analysis functionality
+        async function analyzeMood() {
+            const text = textInput.value.trim();
+            const errorMessage = document.getElementById('error-message');
+            const loading = document.getElementById('loading');
+            const result = document.getElementById('result');
+
+            // Validate input
+            if (!text) {
+                errorMessage.textContent = 'Please enter some text to analyze';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            try {
+                // Show loading state
+                errorMessage.style.display = 'none';
+                loading.style.display = 'block';
+                result.style.display = 'none';
+
+                // Make API call to backend
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ text })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to analyze mood');
+                }
+
+                const data = await response.json();
+
+                // Update UI with results
+                document.getElementById('mood-emoji').textContent = getMoodEmoji(data.predicted_mood);
+                document.getElementById('basic-mood').textContent = data.basic_mood;
+                document.getElementById('predicted-mood').textContent = data.predicted_mood;
+                document.getElementById('confidence').textContent = `${Math.round(data.confidence * 100)}%`;
+                document.getElementById('confidence-level').style.width = `${data.confidence * 100}%`;
+                document.getElementById('sentiment-score').textContent = data.sentiment_score.toFixed(2);
+
+                // Show results
+                result.style.display = 'block';
+
+                // Save to history
+                saveToHistory(data);
+
+            } catch (error) {
+                errorMessage.textContent = 'An error occurred while analyzing your mood';
+                errorMessage.style.display = 'block';
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        function getMoodEmoji(mood) {
+            const emojiMap = {
+                'happy': '😊',
+                'sad': '😢',
+                'angry': '😠',
+                'neutral': '😐',
+                'excited': '🤗',
+                'anxious': '😰',
+                'surprised': '😮',
+                'relaxed': '😌'
+            };
+            return emojiMap[mood.toLowerCase()] || '🤔';
+        }
+
+        function saveToHistory(data) {
+            const history = JSON.parse(localStorage.getItem('mood-history') || '[]');
+            history.unshift({
+                ...data,
+                timestamp: new Date().toISOString()
+            });
+            // Keep only last 5 entries
+            history.splice(5);
+            localStorage.setItem('mood-history', JSON.stringify(history));
+            updateHistoryUI();
+        }
+
+        function updateHistoryUI() {
+            const history = JSON.parse(localStorage.getItem('mood-history') || '[]');
+            const historyList = document.getElementById('history-list');
+            historyList.innerHTML = history.map(entry => `
+                <div class="history-item">
+                    <span class="history-emoji">${getMoodEmoji(entry.predicted_mood)}</span>
+                    <span class="history-mood">${entry.predicted_mood}</span>
+                    <span class="history-time">${new Date(entry.timestamp).toLocaleString()}</span>
+                </div>
+            `).join('');
+        }
+
+        // Load history on page load
+        updateHistoryUI();
+    </script>
+</body>
+</html>
+
+</script>
+</body>
+</html>

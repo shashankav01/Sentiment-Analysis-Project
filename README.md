@@ -99,5 +99,4 @@ Endpoint: `/analyze`
 - Deployment to **Heroku / Render / AWS**.  
 - Visualization dashboard for moods over time.  
 
-👨‍💻 Author  
-Developed by **[Shashank AV]**.  
+👨‍💻**Developed by:** Shashank AV.
